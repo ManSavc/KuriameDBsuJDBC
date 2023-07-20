@@ -12,10 +12,15 @@ import java.time.LocalDateTime;
 @Table(name = "Answer")
 public class Answer {
 
-    @Id
+    @Id //this is primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Answer_id")
+    @Column(name = "Answer_id") //@Collumn rodo su kokiu stulpeliu bus suristi duomenys
+                                //pvz jeigu stulpelio pavadinimas atitinka duomenu pavadinima, tada ok,
+                        //bet sujungiant reikia nurodyti'su mapinti' pvz lentele'atlikejas' , o duomenys 'daininikas'
     private Long answer_id;
+
+    @Column(name = "AnswerSelect")
+    private Integer answerSelect;
 
     @Column(name = "Text")
     private String text;

@@ -16,7 +16,8 @@
       <console name="Connection" type="STANDARD" schema="uzduotis" session="Main"><![CDATA[select * from klausimas
 select * from Answer
 select * from User
-select * from User]]></console>
+select * from User
+select * from Rezultatai]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

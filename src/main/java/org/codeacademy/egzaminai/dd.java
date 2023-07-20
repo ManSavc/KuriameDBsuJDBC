@@ -1,114 +1,141 @@
 package org.codeacademy.egzaminai;
 
-import org.hibernate.FlushMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-
 public class dd {
     static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
 
         SessionFactory factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
-        Transaction t = session.beginTransaction();
 
-
-        System.out.println("yours nickname");
         User user = new User();
+        System.out.println("Type: Teacher 'press 1'\n \t Student 'press 0' ");
+        user.setType(Integer.valueOf(sc.nextLine()));
+        System.out.println(" type " + user.getType());
+
+        System.out.println("yours nickname: ");
         user.setNick(sc.nextLine());
+        System.out.println("Hello " + user.getNick()+" !  ");
 
+        if (user.getType() == 0) {  //if we write '1'for teacher, program ends
+            System.out.println(" Yuo got some questions : ");
+            Klausimas klausimas = new Klausimas();
+            klausimas.setKlausimasText("Kokia apytiksliai būna žaibo iškrovos įtampa?\n");
+            Answer answer1 = new Answer();
+            answer1.setText("100kV");
+            answer1.setAnswerTrue(false);
+            Answer answer2 = new Answer();
+            answer2.setText("10GV ");
+            answer2.setAnswerTrue(false);
+            Answer answer3 = new Answer();
+            answer3.setText("100MV");
+            answer3.setAnswerTrue(true);
+            System.out.println(klausimas.getKlausimasText() + "\n 1 " + answer1.getText() + "\n 2 " + answer2.getText() + "\n 3 " + answer3.getText());
 
-        Klausimas klausimas = new Klausimas();
-        klausimas.setKlausimasText("ar lyja");
-        Answer answer = new Answer();
-        answer.setText("taip");
-        answer.setAnswerTrue(true);
-        Answer answer2 = new Answer();
-        answer2.setText("neg");
-        answer2.setAnswerTrue(false);
-        Answer answer3 = new Answer();
-        answer3.setText("neznn");
-        answer3.setAnswerTrue(false);
+            Answer select = new Answer();
+            select.setAnswerSelect(sc.nextInt());
+            answer1.setAnswerSelect(select.getAnswerSelect());
+            answer2.setAnswerSelect(select.getAnswerSelect());
+            answer3.setAnswerSelect(select.getAnswerSelect());
 
-        klausimas.getAtsakymuSar().add(answer);
-        klausimas.getAtsakymuSar().add(answer2);
-        klausimas.getAtsakymuSar().add(answer3);
+            klausimas.getAtsakymuSar().add(answer1);
+            klausimas.getAtsakymuSar().add(answer2);
+            klausimas.getAtsakymuSar().add(answer3);
 
-        answer.setKlausimas(klausimas);
-        answer2.setKlausimas(klausimas);
-        answer3.setKlausimas(klausimas);
+            answer1.setKlausimas(klausimas);
+            answer2.setKlausimas(klausimas);
+            answer3.setKlausimas(klausimas);
 
-//        session.persist(klausimas);
-//
-        Klausimas klausimas2 = new Klausimas();
-        klausimas2.setKlausimasText("ar silta");
-        Answer answer20 = new Answer();
-        answer20.setText("manau");
-        answer20.setAnswerTrue(true);
-        Answer answer22 = new Answer();
-        answer22.setText("jokiu_budu nezinau");
-        answer22.setAnswerTrue(false);
-        Answer answer23 = new Answer();
-        answer23.setText("neisivaizduoju");
-        answer23.setAnswerTrue(false);
+            Klausimas klausimas2 = new Klausimas();
+            klausimas2.setKlausimasText("kokia apytiksliai būna žaibo iškrovos srovė? ");
+            Answer answer21 = new Answer();
+            answer21.setText("60 ~ 170 A");
+            answer21.setAnswerTrue(false);
+            Answer answer22 = new Answer();
+            answer22.setText("60 ~ 170 kA");
+            answer22.setAnswerTrue(true);
+            Answer answer23 = new Answer();
+            answer23.setText("60 ~ 170MA");
+            answer23.setAnswerTrue(false);
 
-        klausimas2.getAtsakymuSar().add(answer20);
-        klausimas2.getAtsakymuSar().add(answer22);
-        klausimas2.getAtsakymuSar().add(answer23);
+            System.out.println(klausimas2.getKlausimasText() + "\n 1 " + answer21.getText() + "\n 2 " + answer22.getText() + "\n 3 " + answer23.getText());
+            Answer select2 = new Answer();
+            select2.setAnswerSelect(sc.nextInt());
+            answer21.setAnswerSelect(select2.getAnswerSelect());
+            answer22.setAnswerSelect(select2.getAnswerSelect());
+            answer23.setAnswerSelect(select2.getAnswerSelect());
 
-        answer20.setKlausimas(klausimas2);
-        answer22.setKlausimas(klausimas2);
-        answer23.setKlausimas(klausimas2);
-//
-//        Rezultatai rezultatai = new Rezultatai();
-//       // int j = 2;
-//        rezultatai.setPateikta_klausimu(2);
-////        rezultatai.setProcentas( 0);
-//        //todo nes jei atsakytu nulis, negalima dalybagg
-//        session.persist(rezultatai);
-        session.persist(user);
-        session.persist(klausimas);
-        session.persist(klausimas2);
-        t.commit();
-        session.close();
+            klausimas2.getAtsakymuSar().add(answer21);
+            klausimas2.getAtsakymuSar().add(answer22);
+            klausimas2.getAtsakymuSar().add(answer23);
 
-//        Klausimas klausimas = new Klausimas();
-//        klausimas.setKlausimas("Ar lyja");
-////        klausimas.setAtsakymuSar("Ar lyja");
-////        session.persist(klausimas);
-//        List<Klausimas> klausimaiIsDb = session.createQuery("from Klausimas", Klausimas.class)
-//                .getResultList();
-////        klausimaiIsDb.stream().forEach(System.o);
-//        klausimaiIsDb.stream().map(q -> gautiAtsakyma(q)).collect(Collectors.toList());
-//
-//        session.getTransaction().commit();
-    }
+            answer21.setKlausimas(klausimas2);
+            answer22.setKlausimas(klausimas2);
+            answer23.setKlausimas(klausimas2);
 
-//    private static Boolean gautiAtsakyma(Klausimas q) {
-//        System.out.println(q.getKlausimas());
-//        System.out.println(q.getAtsakymuSar());
-//        String ats = sc.nextLine();
-//        //q.setAtsakymas();  boolenas
-////if equals..
-//return null;
-//    }
-////private static int palygintiAtsakyma(){
-//        //gauta atsakyma palyginti su nurodytu ats
-//}
+            Rezultatai rezultas = new Rezultatai();
+            int x = 0;
+            int atsakyta = 0;
+            System.out.println(answer1.getAnswerTrue());
+            System.out.println(answer2.getAnswerTrue());
+            System.out.println(answer3.getAnswerTrue());
+            for (int i = 0; i < 1; i++) {
+                if (answer1.getAnswerTrue().equals(true)) {
+                    x = 1;
+                    System.out.println("daro 1 " + x + "atsakyta " + atsakyta);
+                }
+                if (answer2.getAnswerTrue().equals(true)) {
+                    x = 2;
+                    System.out.println("daro 2 " + x + "atsakyta " + atsakyta);
+                }
+                if (answer3.getAnswerTrue().equals(true)) {
+                    x = 3;
+                    System.out.println("daro 3 " + x + "atsakyta " + atsakyta);
+                }
+            }
+            if (x == answer1.getAnswerSelect()) {
+                atsakyta++;
+                System.out.println("ieina i 1  " + x + "atsakyta " + atsakyta);
+            }
+            x = 0;
+            System.out.println(answer21.getAnswerTrue());
+            System.out.println(answer22.getAnswerTrue());
+            System.out.println(answer23.getAnswerTrue());
+            System.out.println("pries 2  " + x + "atsakyta " + atsakyta);
 
-    private static Session createSession() {
-        Configuration cfg = new Configuration();
-        SessionFactory factory = cfg.configure().buildSessionFactory();
-        Session session = factory.openSession();
-        session.setHibernateFlushMode(FlushMode.ALWAYS);
-        return session;
+            for (int i = 0; i < 1; i++) {
+                if (answer21.getAnswerTrue().equals(true)) {
+                    x = 1;
+                    System.out.println("daro 1 " + x + "atsakyta " + atsakyta);
+                }
+                if (answer22.getAnswerTrue().equals(true)) {
+                    x = 2;
+                    System.out.println("daro 2 " + x + "atsakyta " + atsakyta);
+                }
+                if (answer23.getAnswerTrue().equals(true)) {
+                    x = 3;
+                    System.out.println("daro 3 " + x + "atsakyta " + atsakyta);
+                }
+            }
+            if (x == answer21.getAnswerSelect()) {
+                atsakyta++;
+                System.out.println("ieina i 2  " + x + "atsakyta " + atsakyta);
+            }
+            rezultas.setRezas(atsakyta);
+            System.out.println("Rezultatas " + rezultas.getRezas());
+
+            Transaction t = session.beginTransaction();
+            session.persist(user);
+            session.persist(klausimas);
+            session.persist(klausimas2);
+            session.persist(rezultas);
+            t.commit();
+            session.close();
+        }
     }
 }
 

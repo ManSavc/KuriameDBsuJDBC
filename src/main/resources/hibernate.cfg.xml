@@ -17,9 +17,7 @@
         <mapping class="org.codeacademy.egzaminai.Klausimas" />
         <mapping class="org.codeacademy.egzaminai.Answer" />
         <mapping class="org.codeacademy.egzaminai.User" />
-<!--        <mapping class="org.codeacademy.egzaminai.Rezultatai" />-->
-<!--        <mapping class="org.codeacademy.test.model.Answer" />-->
-<!--        <mapping class="org.codeacademy.test.user.User" />-->
+        <mapping class="org.codeacademy.egzaminai.Rezultatai" />
 
     </session-factory>
 </hibernate-configuration>

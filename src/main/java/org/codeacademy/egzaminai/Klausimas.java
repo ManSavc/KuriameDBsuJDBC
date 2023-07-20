@@ -26,9 +26,6 @@ public class Klausimas {
     @Column(name = "KLAUSIMAS_text")
     private String klausimasText;
 
-//    @OneTo//todo(fetch = FetchType.LAZY)
-//    //maped by ...
-//    cascade...
 @OneToMany(
         mappedBy = "klausimas",
         cascade = CascadeType.ALL,
